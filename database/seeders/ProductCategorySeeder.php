@@ -26,7 +26,7 @@ class ProductCategorySeeder extends Seeder
 
         ProductCategory::insert($category);
 
-        $category = Product::get();
+        $category = ProductCategory::get();
         $category->map(function($query){
             Product::factory()->count(10)->state(
                 new Sequence(['product_category_id' => $query->id])

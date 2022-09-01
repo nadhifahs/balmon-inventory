@@ -21,7 +21,7 @@ class AdminFactory extends Factory
             'password' => bcrypt('password'),
             'email' => fake()->unique()->email(),
             'name' => fake()->name(),
-            'avatar' => '/placeholder/vatar/default-profile.png'
+            'avatar' => 'storage/placeholder/avatar/default-profile.png'
         ];
     }
 }

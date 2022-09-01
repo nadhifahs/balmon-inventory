@@ -12,7 +12,7 @@ class UserLoginController extends Controller
         if(Auth::guard('web')->check()){
             return redirect(route('user.profile.edit'));
         }
-        return view('auth.user.signin');
+        return view('auth.user.login');
     }
 
     public function login(Request $request)
@@ -32,10 +32,9 @@ class UserLoginController extends Controller
         }
 
         if($auth){
-            $roleUser = Auth::guard('web')->user()->user_role->name;
             return redirect()
-				->intended(route('user.profile.edit'))
-				->with('status','Sukses Login Sebagai '.$roleUser.'!');
+				->intended(route('home.index'))
+				->with('status','Sukses Login Sebagai User!');
         }else{
             return back()->withErrors('username / password anda salah!');
         }
@@ -46,7 +45,7 @@ class UserLoginController extends Controller
         if (Auth::guard('web')->check()) {
 			Auth::guard('web')->logout();
 			session()->flush();
-			return redirect(route('login.index'));
+			return redirect(route('user.login.index'));
 		}
     }
 }

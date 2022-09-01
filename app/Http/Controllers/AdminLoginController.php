@@ -10,9 +10,9 @@ class AdminLoginController extends Controller
     public function index()
     {
         if(Auth::guard('admin')->check()){
-            return redirect(route('home.index'));
+            return redirect(route('admin.home.index'));
         }
-        return view('auth.admin.signin');
+        return view('auth.admin.login');
     }
 
     public function login(Request $request)
@@ -39,22 +39,11 @@ class AdminLoginController extends Controller
 
         if($auth){
             return redirect()
-				->intended(route('home.index'))
+				->intended(route('admin.home.index'))
 				->with('status','Sukses Login Sebagai Admin!');
         }else{
             return back()->withErrors('username / password anda salah!');
         }
     }
 
-    public function logout()
-    {
-        if (Auth::guard('admin')->check()) {
-			Auth::guard('admin')->logout();
-			session()->flush();
-		}else{
-            Auth::guard('web')->logout();
-            session()->flush();
-        }
-        return Redirect(route('login.index'));
-    }
 }
