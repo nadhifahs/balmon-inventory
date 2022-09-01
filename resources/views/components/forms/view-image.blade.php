@@ -1,5 +1,5 @@
 <label class="col-form-label" for="{{$id}}">{{ $label }}</label>
-<div class="card mb-2" style="width: 18rem;">
+<div class="card mb-2">
     {{-- <div class="card-title">
         <h5 class="card-title">{{ $label }}</h5>
     </div> --}}
@@ -9,5 +9,5 @@
     </div>
 </div>
 @push('footer-add')
-<script src="{{asset('assets/js/imageReview.js')}}"></script>
+{{-- <script src="{{asset('assets/js/imageReview.js')}}"></script> --}}
 @endpush

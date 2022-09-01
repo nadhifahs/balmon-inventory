@@ -2,9 +2,9 @@
 
 @section('contents')
 <div class="row">
-    <x-card.highlight title="Total Product" value="100" />
-    <x-card.highlight varian="success" title="Rent Product" value="20" />
-    <x-card.highlight varian="info" title="Available Product" value="80" />
+    <x-card.highlight title="Total Product" value="{{$totalProduct}}" />
+    <x-card.highlight varian="success" title="Total User" value="{{$totalUser}}" />
+    <x-card.highlight varian="info" title="Total Admin" value="{{$totalAdmin}}" />
 </div>
 <div class="row">
 

@@ -20,6 +20,7 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
     @yield('header-script')
+    @stack('header-add')
 </head>
 
 <body id="page-top">
@@ -110,10 +111,12 @@
     <script src=" {{ asset('assets/vendor/chart.js/Chart.min.js') }}"></script>
 
 
+    @stack('footer-add')
     @yield('footer-script')
     <!-- Page level custom scripts -->
     {{-- <script src=" {{ asset('assets/js/demo/chart-area-demo.js') }}"></script>
     <script src=" {{ asset('assets/js/demo/chart-pie-demo.js') }}"></script> --}}
+    <script src=" {{ asset('assets/js/imageReview.js') }}"></script>
 
 </body>
 

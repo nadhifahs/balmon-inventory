@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,19 +13,22 @@ class DashboardController extends Controller
     {
         $mainPageTitle = 'Dashboard';
         $subPageTitle = 'Main';
-        $pageTitle = 'Dashboard';
+        $pageTitle = 'Dashboard Admin';
 
         $totalProduct = Product::count();
-        $rentProduct = Product::withCount('cart_detail')->get();
+        $totalUser = User::count();
+        $totalAdmin = User::count();
+        // $rentProduct = Product::with('cart_detail')->get();
         // dd($rentProduct);
-        // $availableProduct = $totalProduct - $rentProduct;
 
         return view('admin.home.index', compact(
             'mainPageTitle',
             'subPageTitle',
             'pageTitle',
             'totalProduct',
-            'rentProduct',
+            'totalUser',
+            'totalAdmin',
+            // 'rentProduct',
             // 'availableProduct'
         ));
     }
