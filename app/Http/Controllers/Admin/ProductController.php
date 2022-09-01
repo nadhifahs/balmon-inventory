@@ -29,6 +29,9 @@ class ProductController extends Controller
             ->addColumn('action', function($query){
                 return $this->getActionColumn($query);
             })
+            ->addColumn('product_category.name', function($query){
+                return isset($query->product_category->name) ? $query->product_category->name : 'Belum Set Category';
+            })
             ->rawColumns(['action'])
             ->make(true);
         }
@@ -92,7 +95,7 @@ class ProductController extends Controller
     {
         $mainPageTitle = 'Product Management';
         $subPageTitle = 'Main';
-        $pageTitle = 'Create Or Edit Product';
+        $pageTitle = 'Update Product';
 
         $category = ProductCategory::get()->pluck('name', 'id');
 
@@ -131,9 +134,9 @@ class ProductController extends Controller
             $product->delete();
             return redirect()->route('admin.product.index')->with('status', 'Success Delete Product');
         } catch (\Throwable $e) {
-            return redirect()->route('admin.product.index')->with('status', 'Failed Delete Product');
+            return redirect()->route('admin.product.index')->with('error', 'Failed Delete Product');
         }
-}
+    }
 
     public function getActionColumn($data)
     {

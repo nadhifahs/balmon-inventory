@@ -48,8 +48,8 @@ Route::group(['middleware'=>['auth:web']], function() {
 
 Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin','as'=>'admin.'], function(){
     Route::get('/home', [AdminDashboardController::class, 'index'])->name('home.index');
+    Route::resource('product/category', ProductCategoryController::class)->parameter('category', 'productCategory');
     Route::resource('product', ProductController::class);
-    Route::resource('product/category', ProductCategoryController::class);
     Route::resource('user', UserController::class);
     Route::resource('admin', AdminController::class);
     Route::get('/logout', [LogoutController::class, 'index'])->name('logout.index');
