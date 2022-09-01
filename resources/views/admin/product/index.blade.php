@@ -1,13 +1,11 @@
 @extends('layout.master')
 
-@section('title', $pageTitle)
-
 @section('header-script')
 <link href="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.css' ) }}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('contents')
-<x-card.layout title="Product">
+<x-card.layout title="Product" href="{{route('admin.product.create')}}">
     <div class="table-responsive">
         <table class="table datatables-target-exec table-striped">
             <thead>
