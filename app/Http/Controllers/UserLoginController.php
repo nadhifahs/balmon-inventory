@@ -10,7 +10,7 @@ class UserLoginController extends Controller
     public function index()
     {
         if(Auth::guard('web')->check()){
-            return redirect(route('user.profile.edit'));
+            return redirect(route('home.index'));
         }
         return view('auth.user.login');
     }
