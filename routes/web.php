@@ -10,6 +10,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\RentController;
+use App\Http\Controllers\User\ReturnController;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\UserRegisterController;
 use App\Models\Product;
@@ -49,6 +50,7 @@ Route::group(['middleware'=>['auth:web']], function() {
     Route::get('/rent/pickup', [RentController::class, 'pickup'])->name('rent.pickup');
     Route::get('/rent', [RentController::class, 'index'])->name('rent.index');
     Route::post('/rent', [RentController::class, 'store'])->name('rent.store');
+    Route::get('/return', [ReturnController::class, 'index'])->name('return.index');
     Route::get('/logout', [LogoutController::class, 'index'])->name('logout.index');
 });
 
