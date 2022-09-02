@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReturnController extends Controller
 {
@@ -11,8 +12,11 @@ class ReturnController extends Controller
     {
         $mainPageTitle = 'Peminjaman';
         $subPageTitle = 'Main';
-        $pageTitle = 'Pickup';
-        $cart = Auth::user()->cart()->with('cart_detail','cart_detail.product', 'admin')->where('status', 'RENT')->first();
+        $pageTitle = 'Kembalikan';
+        $cart = Auth::user()->cart()->with('cart_detail','cart_detail.product', 'admin')->whereNotNull('admin_id')->where('status', 'RENT')->first();
+        if($cart == null){
+            return redirect()->route('rent.index')->with('error', 'Tidak ada barang dipinjam');
+        }
         return view('user.rent.pickup', compact('cart','mainPageTitle', 'subPageTitle', 'pageTitle'));
     }
 }

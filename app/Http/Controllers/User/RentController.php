@@ -65,7 +65,7 @@ class RentController extends Controller
             if($cartStatus = Auth::user()->cart()->first()->status == 'READY TO PICKUP'){
                 return redirect()->route('rent.pickup')->with('error', 'Silahkan selesaikan peminjaman terlebih dahulu');
             }else{
-                return redirect()->route('rent.index')->with('error', 'Silahkan kembalikan peminjaman terlebih dahulu');
+                return redirect()->route('return.index')->with('error', 'Silahkan kembalikan peminjaman terlebih dahulu');
             }
         }
     }
