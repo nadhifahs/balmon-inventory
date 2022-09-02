@@ -5,14 +5,14 @@
 @endsection
 
 @section('contents')
-<x-card.layout title="User" href="{{route('admin.user.create')}}">
+<x-card.layout title="Peminjaman" href="{{route('admin.product.create')}}">
     <div class="table-responsive">
         <table class="table datatables-target-exec table-striped">
             <thead>
                 <th>No</th>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Username</th>
+                <th>Category</th>
+                <th>Quantity</th>
                 <th>Action</th>
             </thead>
             <tbody>
@@ -31,7 +31,7 @@
         var table = $('.datatables-target-exec').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('admin.user.index') }}",
+            ajax: "{{ route('rent.index') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
@@ -44,11 +44,12 @@
                     name: 'name'
                 },
                 {
-                    data: 'email',
-                    name: 'email'
-                },{
-                    data: 'username',
-                    name: 'username'
+                    data: 'product_category.name',
+                    name: 'product_category.name'
+                },
+                {
+                    data: 'quantity',
+                    name: 'quantity'
                 },
                 {
                     data: 'action',

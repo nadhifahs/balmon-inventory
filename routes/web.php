@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\RentController;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\UserRegisterController;
 use App\Models\Product;
@@ -39,8 +41,12 @@ Route::post('/user', [UserLoginController::class, 'login'])->name('user.login.st
 
 Route::group(['middleware'=>['auth:web']], function() {
     Route::get('/', [DashboardController::class, 'index'])->name('home.index');
-    Route::get('/rent', [ProductController::class, 'index'])->name('rent.index');
-    Route::post('/rent', [ProductController::class, 'store'])->name('rent.store');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/cart/{id}/document',[CartController::class, 'updateDocument'])->name('cart.update');
+    Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::get('/rent', [RentController::class, 'index'])->name('rent.index');
+    Route::post('/rent', [RentController::class, 'store'])->name('rent.store');
     Route::get('/logout', [LogoutController::class, 'index'])->name('logout.index');
 });
 

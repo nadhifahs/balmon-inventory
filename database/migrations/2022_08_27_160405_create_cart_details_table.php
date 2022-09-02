@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('cart_id');
             $table->unsignedBigInteger('product_id');
             $table->bigInteger('quantity');
-            $table->enum('status', ['REJECTED', 'RENT', 'RETURN']);
+            $table->enum('status', ['REJECTED', 'RENT', 'RETURN'])->nullable();
             $table->timestamps();
         });
     }
