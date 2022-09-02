@@ -18,8 +18,8 @@
         <x-sidebar.child activate="{{ Request::is('rent/pickup*') ? 'active' : '' }}" text="Pick Up"
             href="{{ route('rent.pickup') }}" />
     </x-sidebar.parent>
-    <x-sidebar.single activate="{{ Request::is('return*') || Request::is('/') ? 'active' : '' }}"
-        icon="fas fa-box-open" href="/" title="RETURN" />
+    <x-sidebar.single activate="{{ Request::is('return*') ? 'active' : '' }}"
+        icon="fas fa-box-open" href="{{route('return.index')}}" title="RETURN" />
 @else
     <x-sidebar.single
         activate="{{ Request::is('admin/product*') && !Request::is('admin/product/category*') ? 'active' : '' }}"
