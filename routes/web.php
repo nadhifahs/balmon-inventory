@@ -43,8 +43,10 @@ Route::group(['middleware'=>['auth:web']], function() {
     Route::get('/', [DashboardController::class, 'index'])->name('home.index');
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     Route::post('/cart/{id}/document',[CartController::class, 'updateDocument'])->name('cart.update');
     Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::get('/rent/pickup', [RentController::class, 'pickup'])->name('rent.pickup');
     Route::get('/rent', [RentController::class, 'index'])->name('rent.index');
     Route::post('/rent', [RentController::class, 'store'])->name('rent.store');
     Route::get('/logout', [LogoutController::class, 'index'])->name('logout.index');

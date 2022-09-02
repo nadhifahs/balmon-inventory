@@ -5,7 +5,7 @@
 @endsection
 
 @section('contents')
-<x-card.layout title="Peminjaman" href="{{route('admin.product.create')}}">
+<x-card.layout title="Peminjaman">
     <div class="table-responsive">
         <table class="table datatables-target-exec table-striped">
             <thead>
