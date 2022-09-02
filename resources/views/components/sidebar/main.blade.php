@@ -1,4 +1,4 @@
-<x-sidebar.header href="" icon="" />
+<x-sidebar.header href="{{Auth::guard('web')->check() ? route('home.index') : route('admin.home.index')}}" icon="fas fa-warehouse" />
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">
