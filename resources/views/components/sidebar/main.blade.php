@@ -12,7 +12,9 @@
     <hr class="sidebar-divider d-none d-md-block">
     <x-sidebar.parent collapse="{{ Request::is('rent/pickup*') ? 'show' : '' }}"
         activate="{{ Request::is('rent*') ? 'active' : '' }}" icon="fas fa-pen-square" href="{{ route('rent.index') }}"
-        title="RENT">
+        title="RENT Action">
+        <x-sidebar.child activate="{{ Request::is('rent*') && !Request::is('rent/pickup*') ? 'active' : '' }}"
+            text="RENT" href="{{ route('rent.index') }}" />
         <x-sidebar.child activate="{{ Request::is('rent/pickup*') ? 'active' : '' }}" text="Pick Up"
             href="{{ route('rent.pickup') }}" />
     </x-sidebar.parent>
