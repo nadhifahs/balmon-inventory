@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ConfirmController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\UserController;
@@ -58,6 +59,9 @@ Route::group(['middleware'=>['auth:web']], function() {
 
 Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin','as'=>'admin.'], function(){
     Route::get('/home', [AdminDashboardController::class, 'index'])->name('home.index');
+    Route::get('/scan', [ConfirmController::class, 'index'])->name('scan.index');
+    Route::post('/confirm', [ConfirmController::class, 'store'])->name('scan.update');
+    Route::get('/confirm/{id}', [ConfirmController::class, 'edit'])->name('scan.edit');
     Route::resource('product/category', ProductCategoryController::class)->parameter('category', 'productCategory');
     Route::resource('product', ProductController::class);
     Route::resource('user', UserController::class);

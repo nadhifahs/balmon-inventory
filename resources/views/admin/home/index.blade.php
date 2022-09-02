@@ -1,6 +1,8 @@
 @extends('layout.master')
 
 @section('contents')
+@component('flash')
+@endcomponent
 <div class="row">
     <x-card.highlight title="Total Product" value="{{$totalProduct}}" />
     <x-card.highlight varian="success" title="Total User" value="{{$totalUser}}" />

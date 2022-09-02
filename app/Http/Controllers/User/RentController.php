@@ -77,7 +77,7 @@ class RentController extends Controller
         $pageTitle = 'Pickup';
         $cart = Auth::user()->cart()->with('cart_detail','cart_detail.product', 'admin')->whereNull('admin_id')->where('status', 'READY TO PICKUP')->first();
         if($cart == null){
-            return redirect()->route('rent.index')->with('erro', 'Tidak ada barang untuk di pickup');
+            return redirect()->route('rent.index')->with('error', 'Tidak ada barang untuk di pickup');
         }
         return view('user.rent.pickup', compact('cart','mainPageTitle', 'subPageTitle', 'pageTitle'));
     }

@@ -7,15 +7,16 @@
 @section('contents')
 <div class="row">
     <div class="col-lg-6 col-12">
-        <x-card.layout title="Barcode To Checkout">
-            <div class="text-center">
-                {!! QrCode::size(200)->generate(json_encode(['user_id' => Auth::user()->id, 'rent_code' => $cart->rent_code])) !!}
-                <p class="notify">Waiting for scanning</p>
-            </div>
+        <x-card.layout title="Confirm {{$cart->status == 'READY TO PICKUP' ? 'Rent' : 'Return'}}">
+            <button class="btn btn-primary" form="idPinjam">{{$cart->status == 'READY TO PICKUP' ? 'Konfirmasi Peminjaman' : 'Konfirmasi Pengembalian'}}</button>
+            <form id="idPinjam" action="{{route('admin.scan.update')}}" method="POST">
+                @csrf
+                <input type="hidden" name="rent_code" value="{{$cart->rent_code}}">
+            </form>
         </x-card.layout>
     </div>
     <div class="col-lg-6 col-12">
-        <x-card.layout title="Ready To {{$cart->status == 'READY TO PICKUP' ? 'Pickup' : 'Return'}}">
+        <x-card.layout title="Pickup">
             <div class="card table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -47,10 +48,6 @@
                             <th>Verified by Admin</th>
                             <td class="text-danger"><strong>{{$cart->admin->name ?? 'Belum ter-Verifikasi'}}</strong></td>
                         </tr>
-                        <tr>
-                            <th>Status</th>
-                            <td class="text-{{$cart->status == 'READY TO PICKUP' ? 'secondary' : 'success'}}"><strong>{{$cart->status}}</strong></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -58,7 +55,7 @@
     </div>
 </div>
 <div class="col-12">
-    <x-card.layout title="Ready To {{$cart->status == 'READY TO PICKUP' ? 'Pickup' : 'Return'}}">
+    <x-card.layout title="Pickup">
         <div class="card table-responsive">
             <table class="table table-striped">
                 <thead>
