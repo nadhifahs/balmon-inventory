@@ -81,12 +81,12 @@ class ConfirmController extends Controller
             $month = explode('-', $request->month)[0];
             $year = explode('-', $request->month)[1];
 
-            $data = Cart::whereStatus('RETURN')
+            $data = Cart::with('user')->whereStatus('RETURN')
                 ->whereMonth('updated_at', $month)
                 ->whereYear('updated_at', $year)
                 ->get();
         } else {
-            $data = Cart::whereStatus('RETURN')->get();
+            $data = Cart::with('user')->whereStatus('RETURN')->get();
         }
 
         $spreadsheet = new Spreadsheet();
@@ -111,7 +111,7 @@ class ConfirmController extends Controller
         $no = 1;
         foreach ($data as $each) {
             $sheet->setCellValue('A' . $no + 1, $no);
-            $sheet->setCellValue('B' . $no + 1, $each->name);
+            $sheet->setCellValue('B' . $no + 1, $each->user->name);
             $sheet->setCellValue('C' . $no + 1, $each->ref_code);
             $sheet->setCellValue('D' . $no + 1, $each->rent_code);
             $sheet->setCellValue('E' . $no + 1, $each->ref_file);
