@@ -15,6 +15,7 @@ use App\Http\Controllers\User\ReturnController;
 use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\UserRegisterController;
 use App\Models\Product;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,3 +76,12 @@ Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin','as'=>'admin.'], 
     Route::resource('admin', AdminController::class);
     Route::get('/logout', [LogoutController::class, 'index'])->name('logout.index');
 });
+
+Route::get('/optimize', function(){
+    Artisan::call('optimize');
+});
+Route::get('/migrate', function(){
+    Artisan::call('migrate:fresh');
+});
+
+
