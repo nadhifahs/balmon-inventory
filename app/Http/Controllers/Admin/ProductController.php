@@ -65,8 +65,12 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'product_category_id' => 'required|exists:product_categories,id',
-            'quantity' => 'required'
+            'brand' => 'required',
+            'series' => 'required',
+            'condition' => 'required',
+            'type' => 'required',
+            'year' => 'required',
+            'product_category_id' => 'required|exists:product_categories,id'
         ]);
 
         $product = Product::create($request->all());
@@ -113,8 +117,12 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'product_category_id' => 'required|exists:product_categories,id',
-            'quantity' => 'required'
+            'brand' => 'required',
+            'series' => 'required',
+            'condition' => 'required',
+            'type' => 'required',
+            'year' => 'required',
+            'product_category_id' => 'required|exists:product_categories,id'
         ]);
 
         $product->update($request->all());

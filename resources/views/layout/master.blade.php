@@ -13,6 +13,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css' ) }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/buttons.dataTables.min.css' ) }}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -110,7 +111,14 @@
     <!-- Page level plugins -->
     <script src=" {{ asset('assets/vendor/chart.js/Chart.min.js') }}"></script>
 
-
+    <script src="{{ asset('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{asset('assets/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('assets/js/jszip.min.js')}}"></script>
+    <script src="{{asset('assets/js/pdfmake.min.js')}}"></script>
+    <script src="{{asset('assets/js/vfs_fonts.js')}}"></script>
+    <script src="{{asset('assets/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('assets/js/buttons.print.min.js')}}"></script>
     @stack('footer-add')
     @yield('footer-script')
     <!-- Page level custom scripts -->

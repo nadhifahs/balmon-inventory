@@ -48,7 +48,7 @@ Route::group(['middleware'=>['auth:web']], function() {
     Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
     Route::post('/cart/{id}/document',[CartController::class, 'updateDocument'])->name('cart.update');
     Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
-    Route::get('/rent/pickup', [RentController::class, 'pickup'])->name('rent.pickup');
+    Route::get('/rent/detail', [RentController::class, 'detail'])->name('rent.detail');
     Route::get('/rent', [RentController::class, 'index'])->name('rent.index');
     Route::post('/rent', [RentController::class, 'store'])->name('rent.store');
     Route::get('/return', [ReturnController::class, 'index'])->name('return.index');
@@ -60,8 +60,14 @@ Route::group(['middleware'=>['auth:web']], function() {
 Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin','as'=>'admin.'], function(){
     Route::get('/home', [AdminDashboardController::class, 'index'])->name('home.index');
     Route::get('/scan', [ConfirmController::class, 'index'])->name('scan.index');
+    Route::get('/confirm',[ConfirmController::class, 'listRent'])->name('confirm.index');
     Route::post('/confirm', [ConfirmController::class, 'store'])->name('scan.update');
     Route::get('/confirm/{id}', [ConfirmController::class, 'edit'])->name('scan.edit');
+    Route::post('/confirm/{id}', [ConfirmController::class, 'returnProduct'])->name('confirm.return');
+
+    Route::get('/report', [ConfirmController::class, 'report'])->name('rent.report');
+    Route::post('/report', [ConfirmController::class, 'export'])->name('rent.report.export');
+
     Route::resource('product/category', ProductCategoryController::class)->parameter('category', 'productCategory');
     Route::resource('product', ProductController::class);
     Route::resource('user', UserController::class);

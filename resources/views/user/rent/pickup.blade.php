@@ -6,16 +6,18 @@
 
 @section('contents')
 <div class="row">
+    @if (in_array($cart->status, ['READY TO PICKUP', 'RENT']))
     <div class="col-lg-6 col-12">
-        <x-card.layout title="Barcode To Checkout">
+        <x-card.layout title="Barcode To Identify">
             <div class="text-center">
                 {!! QrCode::size(200)->generate(json_encode(['user_id' => Auth::user()->id, 'rent_code' => $cart->rent_code])) !!}
                 <p class="notify">Waiting for scanning</p>
             </div>
         </x-card.layout>
     </div>
+    @endif
     <div class="col-lg-6 col-12">
-        <x-card.layout title="Ready To {{$cart->status == 'READY TO PICKUP' ? 'Pickup' : 'Return'}}">
+        <x-card.layout title="Detail Rent Transaction">
             <div class="card table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -49,7 +51,7 @@
                         </tr>
                         <tr>
                             <th>Status</th>
-                            <td class="text-{{$cart->status == 'READY TO PICKUP' ? 'secondary' : 'success'}}"><strong>{{$cart->status}}</strong></td>
+                            <td class="text-{{$colorStatus}}"><strong>{{$cart->status}}</strong></td>
                         </tr>
                     </tbody>
                 </table>
@@ -58,7 +60,7 @@
     </div>
 </div>
 <div class="col-12">
-    <x-card.layout title="Ready To {{$cart->status == 'READY TO PICKUP' ? 'Pickup' : 'Return'}}">
+    <x-card.layout title="Detail Rent Transaction">
         <div class="card table-responsive">
             <table class="table table-striped">
                 <thead>

@@ -19,7 +19,12 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->words(3, true),
             'product_category_id' => 1,
-            'quantity' => rand(1, 10)
+            'brand' => $this->faker->lexify('?????'),
+            'type' => $this->faker->lexify('?????'),
+            'series' => $this->faker->lexify('?????'),
+            'condition' => $this->faker->randomElement(['BAIK','RUSAK']),
+            'year' => rand(2010,2022),
+            'quantity' => 1
         ];
     }
 }

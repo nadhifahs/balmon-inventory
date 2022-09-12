@@ -10,10 +10,10 @@
             <table class="table datatables-target-exec table-striped">
                 <thead>
                     <th>No</th>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Quantity</th>
-                    <th>Condition</th>
+                    <th>Name User</th>
+                    <th>Rent Time</th>
+                    <th>Return Time</th>
+                    <th>Status</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
@@ -77,7 +77,7 @@
                 ],
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('admin.product.index') }}",
+                ajax: "{{ route('admin.confirm.index') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
@@ -86,20 +86,20 @@
                         searchable: false
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'user.name',
+                        name: 'user.name'
                     },
                     {
-                        data: 'product_category.name',
-                        name: 'product_category.name'
+                        data: 'rent_time',
+                        name: 'rent_time'
                     },
                     {
-                        data: 'quantity',
-                        name: 'quantity'
+                        data: 'return_time',
+                        name: 'return_time'
                     },
                     {
-                        data: 'condition',
-                        name: 'condition'
+                        data: 'status',
+                        name: 'status'
                     },
                     {
                         data: 'action',

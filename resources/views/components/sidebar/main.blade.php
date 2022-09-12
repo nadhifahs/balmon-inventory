@@ -12,11 +12,11 @@
     <hr class="sidebar-divider d-none d-md-block">
     <x-sidebar.parent collapse="{{ Request::is('rent/pickup*') ? 'show' : '' }}"
         activate="{{ Request::is('rent*') ? 'active' : '' }}" icon="fas fa-pen-square" href="{{ route('rent.index') }}"
-        title="RENT Action">
+        title="Rent Action">
         <x-sidebar.child activate="{{ Request::is('rent*') && !Request::is('rent/pickup*') ? 'active' : '' }}"
-            text="RENT" href="{{ route('rent.index') }}" />
-        <x-sidebar.child activate="{{ Request::is('rent/pickup*') ? 'active' : '' }}" text="Pick Up"
-            href="{{ route('rent.pickup') }}" />
+            text="Request" href="{{ route('rent.index') }}" />
+        <x-sidebar.child activate="{{ Request::is('rent/detail*') ? 'active' : '' }}" text="Detail"
+            href="{{ route('rent.detail') }}" />
     </x-sidebar.parent>
     <x-sidebar.single activate="{{ Request::is('return*') ? 'active' : '' }}" icon="fas fa-box-open"
         href="{{ route('return.index') }}" title="RETURN" />
@@ -32,7 +32,11 @@
         href="{{ route('admin.admin.index') }}" title="Admin" />
     <hr class="sidebar-divider d-none d-md-block">
     <x-sidebar.single activate="{{ Request::is('admin/scan*') ? 'active' : '' }}" icon="fas fa-cogs"
-        href="{{ route('admin.scan.index') }}" title="Scan" />
+    href="{{ route('admin.scan.index') }}" title="Scan" />
+    <x-sidebar.single activate="{{ Request::is('admin/confirm*') ? 'active' : '' }}" icon="fas fa-cogs"
+        href="{{ route('admin.confirm.index') }}" title="Transaction" />
+    <x-sidebar.single activate="{{ Request::is('admin/report*') ? 'active' : '' }}" icon="fas fa-cogs"
+        href="{{ route('admin.rent.report') }}" title="Report" />
 @endif
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">

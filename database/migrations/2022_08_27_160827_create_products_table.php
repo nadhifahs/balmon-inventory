@@ -17,7 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('product_category_id');
-            $table->bigInteger('quantity');
+            $table->string('brand');
+            $table->string('type');
+            $table->string('series');
+            $table->string('condition');
+            $table->string('year');
+            $table->bigInteger('quantity')->default(1);
             $table->timestamps();
         });
     }

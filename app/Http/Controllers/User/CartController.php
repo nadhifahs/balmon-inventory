@@ -110,10 +110,10 @@ class CartController extends Controller
     {
         Auth::user()->cart()->update([
             'rent_code' => Uuid::uuid4(),
-            'status' => 'READY TO PICKUP'
+            'status' => 'WAITING ACCEPTMENT'
         ]);
 
-        return redirect()->route('rent.pickup')->with('status', 'Success checkout, ready to pickup!');
+        return redirect()->route('rent.detail')->with('status', 'Success checkout, waiting acceptment!');
     }
 
     public function updateDocument(Request $request, $id)

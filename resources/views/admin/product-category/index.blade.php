@@ -22,11 +22,13 @@
 @endsection
 
 @section('footer-script')
-<script src="{{ asset('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script>
     $(document).ready(() => {
         var table = $('.datatables-target-exec').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
             processing: true,
             serverSide: true,
             ajax: "{{ route('admin.category.index') }}",

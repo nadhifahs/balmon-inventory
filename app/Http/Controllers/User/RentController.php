@@ -17,7 +17,7 @@ class RentController extends Controller
         $pageTitle = 'Peminjaman';
 
         if($request->ajax()){
-            $products = Product::with('product_category')->whereDoesntHave('cart_detail', function($query)
+            $products = Product::with('product_category')->whereNot('condition', 'MAINTENANCE')->whereNot('quantity','=', 0)->whereDoesntHave('cart_detail', function($query)
             {
                 $query->whereNull('status');
             })->select();
@@ -42,7 +42,7 @@ class RentController extends Controller
             'product_id' => 'required'
         ]);
 
-        $cartStatus = Auth::user()->cart()->whereIn('status', ['RENT', 'READY TO PICKUP'])->first();
+        $cartStatus = Auth::user()->cart()->whereIn('status', ['RENT', 'READY TO PICKUP', 'WAITING ACCEPTMENT'])->first();
         if($cartStatus == null)
         {
             $productStock = Product::whereId($request->product_id)->first();
@@ -62,24 +62,32 @@ class RentController extends Controller
 
             return redirect()->route('rent.index')->with('status', 'Berhasil menambahkan ke cart');
         }else{
-            if($cartStatus = Auth::user()->cart()->first()->status == 'READY TO PICKUP'){
-                return redirect()->route('rent.pickup')->with('error', 'Silahkan selesaikan peminjaman terlebih dahulu');
+            if(in_array(Auth::user()->cart()->first()->status, ['READY TO PICKUP', 'WAITING ACCEPTMENT'])){
+                return redirect()->route('rent.detail')->with('error', 'Silahkan selesaikan peminjaman terlebih dahulu');
             }else{
                 return redirect()->route('return.index')->with('error', 'Silahkan kembalikan peminjaman terlebih dahulu');
             }
         }
     }
 
-    public function pickup(Request $request)
+    public function detail(Request $request)
     {
         $mainPageTitle = 'Peminjaman';
         $subPageTitle = 'Main';
         $pageTitle = 'Pickup';
-        $cart = Auth::user()->cart()->with('cart_detail','cart_detail.product', 'admin')->whereNull('admin_id')->where('status', 'READY TO PICKUP')->first();
+        $cart = Auth::user()->cart()->with('cart_detail','cart_detail.product', 'admin')->whereNotIn('status', ['WAITING', 'RETURN'])->first();
         if($cart == null){
             return redirect()->route('rent.index')->with('error', 'Tidak ada barang untuk di pickup');
         }
-        return view('user.rent.pickup', compact('cart','mainPageTitle', 'subPageTitle', 'pageTitle'));
+        $color = [
+            'WAITING ACCEPTMENT' => 'warning',
+            'READY TO PICKUP' => 'success',
+            'RENT' => 'danger',
+        ];
+
+        $colorStatus = $color[$cart->status];
+
+        return view('user.rent.pickup', compact('cart','mainPageTitle', 'subPageTitle', 'pageTitle', 'colorStatus'));
     }
 
     public function getActionColumn($query)

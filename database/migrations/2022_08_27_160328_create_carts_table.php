@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('ref_file')->nullable();
             $table->string('rent_time')->nullable();
             $table->string('return_time')->nullable();
-            $table->enum('status', ['WAITING', 'READY TO PICKUP', 'RENT', 'RETURN']);
+            $table->enum('status', ['WAITING', 'WAITING ACCEPTMENT', 'READY TO PICKUP', 'RENT', 'RETURN']);
             $table->timestamps();
         });
     }
