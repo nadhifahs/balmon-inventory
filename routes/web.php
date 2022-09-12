@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth:admin'],'prefix'=>'admin','as'=>'admin.'], 
     Route::get('/confirm/{id}', [ConfirmController::class, 'edit'])->name('scan.edit');
     Route::post('/confirm/{id}', [ConfirmController::class, 'returnProduct'])->name('confirm.return');
 
+    Route::post('/print/{id}', [ConfirmController::class, 'print'])->name('print.post');
     Route::get('/report', [ConfirmController::class, 'report'])->name('rent.report');
     Route::post('/report', [ConfirmController::class, 'export'])->name('rent.report.export');
 

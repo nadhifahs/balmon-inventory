@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\CartDetail;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,6 +65,15 @@ class ConfirmController extends Controller
         }
 
         return view('admin.confirm.index', compact('mainPageTitle', 'subPageTitle', 'pageTitle'));
+    }
+
+    public function print($id)
+    {
+        $cart = Cart::with('cart_detail', 'cart_detail.product', 'admin')
+            ->where('rent_code', $id)
+            ->first();
+        $pdf = Pdf::loadView('admin.confirm.report', compact('cart'));
+        return $pdf->download('invoice.pdf');
     }
 
     public function report()

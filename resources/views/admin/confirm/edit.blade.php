@@ -18,6 +18,17 @@
             </x-card.layout>
         </div>
         @endif
+        @if ($cart->status == 'RETURN')
+        <div class="col-lg-6 col-12">
+            <x-card.layout title="Status Confirm">
+                {{-- @dd($cart->cart_detail->where('status', 'RENT')->count()) --}}
+                <button class="btn btn-primary" form="idPinjam">Print</button>
+                <form id="idPinjam" action="{{ route('admin.print.post', $cart->rent_code) }}" method="POST">
+                    @csrf
+                </form>
+            </x-card.layout>
+        </div>
+        @endif
         <div class="col-lg-6 col-12">
             <x-card.layout title="Rent Transaction Detail">
                 <div class="card table-responsive">
@@ -83,6 +94,7 @@
                                         {{ $each->product->condition }}
                                     </td>
                                     <td>
+                                        @if ($each->status !== 'RETURN')
                                         <form action="{{ route('admin.confirm.return', $each->id) }}" method="POST">
                                             @csrf
                                             <div class="form-row align-items-center">
@@ -98,7 +110,7 @@
                                                 </div>
                                             </div>
                                         </form>
-
+                                        @endif
                                     </td>
                                 @endif
                             </tr>

@@ -17,7 +17,7 @@
             <button class="btn btn-primary" type="submit">Export</button>
         </form>
     </x-card.layout>
-    <x-card.layout title="Report ALl">
+    <x-card.layout title="Report ALL">
         <form action="{{route('admin.rent.report.export')}}" method="post">
             @csrf
             <button class="btn btn-primary" type="submit">Export All</button>
