@@ -15,9 +15,13 @@ class DashboardController extends Controller
         $pageTitle = 'Dashboard';
 
         $totalProduct = Product::count();
-        $rentProduct = Product::withCount('cart_detail')->get();
-        // dd($rentProduct);
-        // $availableProduct = $totalProduct - $rentProduct;
+        $availableProduct = Product::where('quantity', 1)->count();
+        $rentProduct = Product::whereHas('cart_detail', function($query){
+            $query->where('status', 'RENT');
+        })->count();
+        $goodProduct = Product::whereCondition('BAIK')->count();
+        $badProduct = Product::whereCondition('RUSAK')->count();
+        $maintenanceProduct = Product::whereCondition('MAINTENANCE')->count();
 
         return view('user.home.index', compact(
             'mainPageTitle',
@@ -25,7 +29,10 @@ class DashboardController extends Controller
             'pageTitle',
             'totalProduct',
             'rentProduct',
-            // 'availableProduct'
+            'goodProduct',
+            'badProduct',
+            'availableProduct',
+            'maintenanceProduct'
         ));
     }
 }

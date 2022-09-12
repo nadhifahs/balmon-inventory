@@ -21,6 +21,14 @@ class DashboardController extends Controller
         // $rentProduct = Product::with('cart_detail')->get();
         // dd($rentProduct);
 
+        $availableProduct = Product::where('quantity', 1)->count();
+        $rentProduct = Product::whereHas('cart_detail', function($query){
+            $query->where('status', 'RENT');
+        })->count();
+        $goodProduct = Product::whereCondition('BAIK')->count();
+        $badProduct = Product::whereCondition('RUSAK')->count();
+        $maintenanceProduct = Product::whereCondition('MAINTENANCE')->count();
+
         return view('admin.home.index', compact(
             'mainPageTitle',
             'subPageTitle',
@@ -28,6 +36,11 @@ class DashboardController extends Controller
             'totalProduct',
             'totalUser',
             'totalAdmin',
+            'rentProduct',
+            'goodProduct',
+            'badProduct',
+            'availableProduct',
+            'maintenanceProduct'
             // 'rentProduct',
             // 'availableProduct'
         ));
