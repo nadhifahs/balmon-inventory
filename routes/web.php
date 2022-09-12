@@ -83,5 +83,8 @@ Route::get('/optimize', function(){
 Route::get('/migrate', function(){
     Artisan::call('migrate:fresh');
 });
+Route::get('/storage', function(){
+    Artisan::call('storage:link');
+});
 
 
