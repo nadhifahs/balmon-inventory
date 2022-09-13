@@ -17,6 +17,6 @@ class ReturnController extends Controller
         if($cart == null){
             return redirect()->route('rent.index')->with('error', 'Tidak ada barang dipinjam');
         }
-        return view('user.rent.detail', compact('cart','mainPageTitle', 'subPageTitle', 'pageTitle'));
+        return view('user.rent.pickup', compact('cart','mainPageTitle', 'subPageTitle', 'pageTitle'));
     }
 }
