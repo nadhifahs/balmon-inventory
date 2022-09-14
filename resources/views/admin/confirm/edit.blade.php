@@ -86,7 +86,7 @@
                     <tbody>
                         @foreach ($cart->cart_detail as $each)
                             <tr>
-                                <td>{{ $each->product->name ?? '' }}</td>
+                                <td>{{ $each->product->name ?? 'Product Dihapus' }}</td>
                                 <td>{{ $each->quantity }}</td>
                                 <td>{{ $each->status == 'RENT' ? 'MASIH DIPINJAM' : 'SUDAH DITERIMA' }}</td>
                                 @if ($cart->status == 'RENT')
