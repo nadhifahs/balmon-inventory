@@ -70,7 +70,7 @@
                 <tbody>
                     @foreach ($cart->cart_detail as $each)
                     <tr>
-                        <td>{{$each->product->name}}</td>
+                        <td>{{$each->product->name ?? '' }}</td>
                         <td>{{$each->quantity}}</td>
                     </tr>
                     @endforeach
