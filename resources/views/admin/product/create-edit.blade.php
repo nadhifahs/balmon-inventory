@@ -14,9 +14,9 @@
             <div class="form-group mb-2">
                 <label class="col-form-label" class="form-label" for="selectkondisi">Select Condition</label>
                 <select name="condition" id="selectkondisi" class="custom-select">
-                    <option value="BAIK" {{ $product->condition == 'BAIK' ? 'selected' : '' }}>Baik</option>
-                    <option value="RUSAK" {{ $product->condition == 'RUSAK' ? 'selected' : '' }}>Rusak</option>
-                    <option value="MAINTENANCE" {{ $product->condition == 'MAINTENANCE' ? 'selected' : '' }}>Maintenance</option>
+                    <option value="BAIK" {{ @$product->condition == 'BAIK' ? 'selected' : '' }}>Baik</option>
+                    <option value="RUSAK" {{ @$product->condition == 'RUSAK' ? 'selected' : '' }}>Rusak</option>
+                    <option value="MAINTENANCE" {{ @$product->condition == 'MAINTENANCE' ? 'selected' : '' }}>Maintenance</option>
                 </select>
             </div>
             {{-- <x-forms.input type="text" name="condition" label="Product Condition" :value="@$product->condition" /> --}}
