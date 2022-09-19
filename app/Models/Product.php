@@ -15,7 +15,8 @@ class Product extends Model
         'brand',
         'type',
         'series',
-        'condition'
+        'condition',
+        'year'
     ];
 
     public function product_category()
